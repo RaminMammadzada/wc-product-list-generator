@@ -4,3 +4,4 @@ main/*.pyc
 main/.DS_Store
 main/gui/__pycache__
 main/gui/*.pyc
+*.xlsx

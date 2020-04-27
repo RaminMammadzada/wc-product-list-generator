@@ -90,6 +90,8 @@ def createObjectsAndFillThem(imageFilenameList):
             print("_________________________________________")
             print("<<<<<< YUKARIDAKI ISIMLENDIRME HATALI >>>>>>")
 
+    if( validateStockIDs(products) ): print("::: All SKU codes are validated. :::")
+
     return products
 
 # def totalNumberOfNonzeroElements( list ):
@@ -122,3 +124,24 @@ def extraxtFactoryCode(string):
             return string[:index], index
 
         index += 1
+
+# returns true: if it is all validated
+# throw exception when there is duplicated Stock IDs inside products
+def validateStockIDs(products):
+    print("::: SKU VALIDATION STARTED ::: ")
+    seenStockIDSet = set()
+    index = 1 # this is for debugging purpose
+    numberOfDuplicates = 0
+    for product in products:
+        currentStockID = product.getStockID()
+        if(currentStockID in seenStockIDSet):
+            print(" " + str(index) + ") " + product.images[6].getName()[:] + "  >>> Change SKU Number !!!")
+            numberOfDuplicates += 1
+        else:
+            seenStockIDSet.add(currentStockID)
+            print(" " + str(index) + ") " + product.images[6].getName()[:])
+        index += 1 # this is for debugging purpose
+
+    if(numberOfDuplicates > 0):
+        raise Exception('CHECK THE PRINTED LINES ABOVE, AND CHANGE THE SKU NUMBERS WHICH ARE DUPLICATED. THERE NUMBER OF DUPLICATED: {}'.format(numberOfDuplicates))
+    return True
