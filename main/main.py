@@ -40,10 +40,10 @@ def createAndFillRow(rowNumber, myFile, product, type, isFeatured, description, 
 
     myFile.setType(rowNumber, type)
 
-    print("Size:  > " + size)
-    print("Color: >" + color)
+    #print("Size:  > " + size)
+    #print("Color: >" + color)
     if(size != "" and color != ""):
-        print("burada")
+        #print("burada")
         stockCode = product.getStockID() + size + str(ord(color[0]))
     else:
         stockCode = product.getStockID()
@@ -242,23 +242,23 @@ for product in products:
 
 
         colors = unique(colors)
-        print(colors)
+        #print(colors)
         colorsString = ""
         for color in colors:
             colorsString += str(color)
             if(color != colors[-1]):
                 colorsString += ", "
-        print(colorsString)
+        #print(colorsString)
 
 
         sizes = unique(sizes)
-        print(sizes)
+        #print(sizes)
         sizesString = ""
         for size in sizes:
             sizesString += str(size)
             if (size != sizes[-1]):
                 sizesString += ", "
-        print(sizesString)
+        #print(sizesString)
 
 
         myfile.setAttribute1Values(tempRowNumberForColorsAndSizes, colorsString)
