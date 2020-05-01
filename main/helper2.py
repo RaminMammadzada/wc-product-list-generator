@@ -91,6 +91,9 @@ def createObjectsAndFillThem(imageFilenameList):
             print("<<<<<< YUKARIDAKI ISIMLENDIRME HATALI >>>>>>")
 
     if( validateStockIDs(products) ): print("::: All SKU codes are validated. :::")
+    print("- - - - - - - -")
+    if( validatSizes(products) ): print("::: ALL PRODUCT SIZES ARE VERIFIED. :::")
+    print("- - - - - - - -")
 
     return products
 
@@ -144,4 +147,28 @@ def validateStockIDs(products):
 
     if(numberOfDuplicates > 0):
         raise Exception('CHECK THE PRINTED LINES ABOVE, AND CHANGE THE SKU NUMBERS WHICH ARE DUPLICATED. THERE NUMBER OF DUPLICATED: {}'.format(numberOfDuplicates))
+    return True
+
+def validatSizes(products):
+    print("::: ALL SIZES VALIDATION STARTED ::: ")
+    index = 1
+    numberOfWrongSizes = 0
+    isThisProductChecked = False
+    for product in products:
+        isThisProductChecked = False
+        for amountOfSize in product.getSizes():
+            try:
+                stock = int(amountOfSize)
+            except ValueError:
+                if(not isThisProductChecked):
+                    numberOfWrongSizes += 1
+                    isThisProductChecked = True
+                    print("CORRECTION IS NEEDED IN THE PRODUCT IN THE LINE " + str(index) + ") ")
+        index += 1
+
+    if (numberOfWrongSizes > 0):
+        raise Exception(
+            'CHECK THE PRINTED LINES ABOVE, AND CHANGE THE SIZES WHICH ARE NOT WRITTEN COREECTLY. TOTALLY {} PRODUCT SIZES NEEDED TO CHANGE! '.format(
+                numberOfWrongSizes))
+
     return True
