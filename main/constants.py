@@ -1,21 +1,20 @@
-
-
+# -*- coding: utf-8 -*-
 
 Categories = { "gender": {"E": "Erkek",
-						  "K": "Kadin",
-						  "EC": "Erkek Cocuk",
-						  "KC": "Kiz Cocuk"
+						  "K": "Kadın",
+						  "EC": "Erkek Çocuk",
+						  "KC": "Kız Çocuk"
 						  },
 				"season":
-						{"IS": "Ilkbahar/Sonbahar",
-						"KS": "Kis",
+						{"IS": "İlkbahar/Sonbahar",
+						"KS": "Kış",
 						"YZ": "Yaz"
 						},
 				"style":
 						{
 						"S":"Deri Spor",
 						"K":"Klasik Model",
-						"O":"Konfor Ayakkkabi",
+						"O":"Konfor Ayakkkabı",
 						"M":"Mokasen",
 						"C":"Casual Tarz",
 						"B":"Botlar",
@@ -27,9 +26,9 @@ Categories = { "gender": {"E": "Erkek",
 						"N":"Neolit Taban",
 						"E":"Eva Taban",
 						"P":"Poli Taban",
-						"K":"Kaucuk Taban",
+						"K":"Kauçuk Taban",
 						"T":"Termo Taban",
-						"H":"Hazir Taban"
+						"H":"Hazır Taban"
 						}
 				}
 
@@ -40,6 +39,7 @@ Tags = { "factory": {"1-1": "WalkAir",
 					 "2-1": "Dr.fix",
 					 "2-2": "Forex",
 					 "2-3": "Airflex",
+					 "2-4": "Kamuel",
 					 "2-6": "Dr.fix",
 					 "2-7": "Dr.fix",
 					 "2-8": "Kamuel",
