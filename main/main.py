@@ -9,7 +9,8 @@ from helper1 import *
 #pathInPC = "../../../../../Volumes/G-DRIVE mobile SSD R-Series/Shoes/modeller/erkek-2020-yazlik/depedro/*"
 from helper2 import createObjectsAndFillThem, unique
 
-pathInPC = "/Volumes/G-DRIVE mobile SSD R-Series/Shoes/modeller/first-170-pairs-22-march-2020/dorduncu-merhele/*"
+#pathInPC = "/Volumes/G-DRIVE mobile SSD R-Series/Shoes/modeller/first-170-pairs-22-march-2020/dorduncu-merhele/*"
+pathInPC = "C://wc-programs/wc-product-list-generator/main/allimages/*"
 salePrice = ""
 
 

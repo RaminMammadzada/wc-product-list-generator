@@ -2,7 +2,7 @@ from imp import reload
 from xlsxwriter import Workbook
 import sys
 reload(sys)
-sys.setdefaultencoding('utf-8')
+#sys.setdefaultencoding('utf-8')
 
 excellSheetName = "pittimen2020"
 
