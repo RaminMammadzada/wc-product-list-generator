@@ -10,7 +10,7 @@ from helper1 import *
 from helper2 import createObjectsAndFillThem, unique
 
 pathInPC = "/Volumes/G-DRIVE mobile SSD R-Series/Shoes/modeller/first-170-pairs-22-march-2020/dorduncu-merhele/*"
-
+salePrice = ""
 
 
 
@@ -70,9 +70,11 @@ def createAndFillRow(rowNumber, myFile, product, type, isFeatured, description, 
     myFile.setAllowCustomerReviews(rowNumber, "1")
     myFile.setPurchaseNote(rowNumber, "")
 
-    salePrice = product.getPrice() if type == "variation" else ""
-    regularPrice = int(salePrice) + 200 if type == "variation" else ""
-    myFile.setSalePrice(rowNumber, salePrice)
+    #salePrice = product.getPrice() if type == "variation" else ""
+
+    regularPrice = int(product.getPrice()) if type == "variation" else ""
+    if(salePrice != ""):
+        myFile.setSalePrice(rowNumber, salePrice)
     myFile.setRegularPrice(rowNumber, regularPrice)
     myFile.setCategories(rowNumber, categories)
     myFile.setTags( rowNumber, "deri, " + Tags["factory"][product.getFactory()] + ", " + Categories["style"][product.getStyle()] + ", " + Categories["rubber"][product.getRubberType()] + ", " + Categories["season"][product.getSeason()] )
