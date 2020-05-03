@@ -6,4 +6,5 @@ main/gui/__pycache__
 main/__pycache__
 main/gui/*.pyc
 main/allimages
+*.csv
 *.xlsx

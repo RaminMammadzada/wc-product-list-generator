@@ -142,7 +142,7 @@ for product in products:
         isFeatured = 0
 
 
-    categories = Categories["season"][product.getSeason()] + "," + Categories["season"][product.getSeason()] + " > " + Categories["style"][product.getStyle()] + "," + Categories["style"][product.getStyle()] + " > " + Categories["rubber"][product.getRubberType()]
+    categories = Categories["season"][product.getSeason()] + "," + Categories["season"][product.getSeason()] + " > " + Categories["style"][product.getStyle()] + "," + Categories["season"][product.getSeason()] + " > " + Categories["style"][product.getStyle()] + " > " + Categories["rubber"][product.getRubberType()]
 
     # loop for collection all images of the product as a string
     images = ""
