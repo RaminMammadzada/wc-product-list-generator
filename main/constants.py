@@ -7,11 +7,12 @@ Categories = { "gender": {"E": "Erkek",
 						  },
 				"season":
 						{"IS": "İlkbahar/Sonbahar",
-						"KS": "Kış",
-						"YZ": "Yaz"
+						"KS": "Kışlık",
+						"YZ": "Yazlık"
 						},
 				"style":
 						{
+						"U":"Spor",
 						"S":"Deri Spor",
 						"K":"Klasik Model",
 						"O":"Konfor Ayakkkabı",
@@ -36,7 +37,7 @@ Tags = { "factory": {"1-1": "WalkAir",
 					 "1-2": "Kamuel",
 					 "1-3": "Kamuel",
 					 "1-4": "WalkAir",
-                                         "1-11": "WalkAir",
+                    "1-11": "WalkAir",
 					 "2-1": "Dr.fix",
 					 "2-2": "Forex",
 					 "2-3": "Airflex",
@@ -63,8 +64,8 @@ Tags = { "factory": {"1-1": "WalkAir",
 					 "4-8": "Kamuel",
 					 "4-9": "WalkAir",
 					 "4-10": "WalkAir",
-                                         "4-11": "WalkAir",
-                                         "4-12": "Kamuel",
+                    "4-11": "WalkAir",
+                    "4-12": "Kamuel",
 					 "5-1": "Kamuel",
 					 "5-2": "Kamuel",
 					 "5-3": "Kamuel",
@@ -76,8 +77,8 @@ Tags = { "factory": {"1-1": "WalkAir",
 					 "5-9": "Kamuel",
 					 "5-10": "Kamuel",
 					 "5-11": "Dr.fix",
-                                         "5-12": "WalkAir",
-                                         "6-11": "Greyder"
+                    "5-12": "WalkAir",
+                    "6-11": "Greyder"
 					 }
 		}
 

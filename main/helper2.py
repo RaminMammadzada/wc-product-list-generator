@@ -76,7 +76,10 @@ def createObjectsAndFillThem(imageFilenameList):
             product.setFactory(factory)
             product.setDesignedYear(designedYear)
             product.setSeason(season)
-            product.setStyle(style)
+            if (product.getFactory()[0] == '6'): #conditional style for accepting "Sport" style as well
+                product.setStyle("U")
+            else:
+                product.setStyle(style)
             product.setRubberType(rubberType)
             product.setModelID(modelID)
             product.setPrice(price)
