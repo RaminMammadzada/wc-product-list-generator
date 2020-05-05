@@ -11,3 +11,5 @@ Then changed their filenames obeying the rules given previously, so this project
 ## Rules for product image filenames
 The detailed rules for naming product image filenames can be found the following Youtube video (in Azerbaijani language)
 https://www.youtube.com/watch?v=Qrm9yg_XHwA&list=PLhruyYlm-Zl4SB9q2ogM8_LESP5KsPTph&index=8
+
+
