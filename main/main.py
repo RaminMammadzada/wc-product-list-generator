@@ -33,8 +33,36 @@ model1 = Model(modelID)
 # her modelin 6 resmi olacaq sekilde
 
 
-imageFilenameList = retrieveImageFilenameList(pathInPC)
+filenameTxtFile = "results.txt"
+# this is an extra function to write filenames into the "results.txt" file
+def writeFilenamesToTxt(filenameTxtFile):
+    imageFilenameList = retrieveImageFilenameList(pathInPC)
+    f = open(filenameTxtFile, "w")
+    for ele in imageFilenameList:
+        f.write(ele + '\n')
+    f.close()
+writeFilenamesToTxt(filenameTxtFile)
+
+# this is extra function to get image filenames from extra txt file
+def getImageFilenameListFromTxt(filenameTxtFile):
+    data = []
+    file1 = open(filenameTxtFile, 'r')
+    Lines = file1.readlines()
+
+    # Strips the newline character
+    for line in Lines:
+        data.append(line.strip())
+    return data
+
+
+getImageFilenamesFromPathOrTxtFile = False # True: from path, False: from txt file
+if(getImageFilenamesFromPathOrTxtFile):
+    imageFilenameList = retrieveImageFilenameList(pathInPC)
+else:
+    imageFilenameList = getImageFilenameListFromTxt(filenameTxtFile)
+
 products = createObjectsAndFillThem(imageFilenameList)
+
 
 def createAndFillRow(rowNumber, myFile, product, type, isFeatured, description, stock="", categories="", images="", parent="", crossSellProducts="", color="", size=""):
     value = ""
