@@ -55,7 +55,7 @@ def getImageFilenameListFromTxt(filenameTxtFile):
     return data
 
 
-getImageFilenamesFromPathOrTxtFile = False # True: from path, False: from txt file
+getImageFilenamesFromPathOrTxtFile = True # True: from path, False: from txt file
 if(getImageFilenamesFromPathOrTxtFile):
     imageFilenameList = retrieveImageFilenameList(pathInPC)
 else:
