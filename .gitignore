@@ -8,3 +8,4 @@ main/gui/*.pyc
 main/allimages
 *.csv
 *.xlsx
+*.txt

@@ -8,6 +8,7 @@ from helper1 import *
 #pathInPC = "../../../modeller/erkek-2020-yazlik/" + "sultan/*"
 #pathInPC = "../../../../../Volumes/G-DRIVE mobile SSD R-Series/Shoes/modeller/erkek-2020-yazlik/depedro/*"
 from helper2 import createObjectsAndFillThem, unique
+from helper3 import *
 
 #pathInPC = "/Volumes/G-DRIVE mobile SSD R-Series/Shoes/modeller/first-170-pairs-22-march-2020/dorduncu-merhele/*"
 pathInPC = "C://wc-programs/wc-product-list-generator/main/allimages/*"
@@ -33,33 +34,17 @@ model1 = Model(modelID)
 # her modelin 6 resmi olacaq sekilde
 
 
-filenameTxtFile = "results.txt"
-# this is an extra function to write filenames into the "results.txt" file
-def writeFilenamesToTxt(filenameTxtFile):
-    imageFilenameList = retrieveImageFilenameList(pathInPC)
-    f = open(filenameTxtFile, "w")
-    for ele in imageFilenameList:
-        f.write(ele + '\n')
-    f.close()
-writeFilenamesToTxt(filenameTxtFile)
+filenameTxtFile = "results1.txt"
 
-# this is extra function to get image filenames from extra txt file
-def getImageFilenameListFromTxt(filenameTxtFile):
-    data = []
-    file1 = open(filenameTxtFile, 'r')
-    Lines = file1.readlines()
+writeToTxtFile = False # True: write to txt file, False: do not write to txt file
+if(writeToTxtFile): writeFilenamesToTxt(pathInPC, filenameTxtFile)
 
-    # Strips the newline character
-    for line in Lines:
-        data.append(line.strip())
-    return data
+getImageFilenamesFromPathOrTxtFile = False # True: from txt file, False: from path
 
-
-getImageFilenamesFromPathOrTxtFile = True # True: from path, False: from txt file
 if(getImageFilenamesFromPathOrTxtFile):
-    imageFilenameList = retrieveImageFilenameList(pathInPC)
-else:
     imageFilenameList = getImageFilenameListFromTxt(filenameTxtFile)
+else:
+    imageFilenameList = retrieveImageFilenameList(pathInPC)
 
 products = createObjectsAndFillThem(imageFilenameList)
 
@@ -153,9 +138,9 @@ myfile.setWorksheetHeaders()
 
 
 # dictionary for controlling the number of the existince of the same product, first we set them all 0, we will change it later
-isControlledDict = {}
+isControlledProductDict = {}
 for product in products:
-    isControlledDict[product.getFactory() + "-" + product.getDesignedYear() + product.getModelID()] = 0
+    isControlledProductDict[product.getFactory() + "-" + product.getDesignedYear() + product.getModelID()] = 0
 
 
 rowNumber = 2
@@ -172,7 +157,7 @@ for product in products:
 
     categories = Categories["season"][product.getSeason()] + "," + Categories["season"][product.getSeason()] + " > " + Categories["style"][product.getStyle()] + "," + Categories["season"][product.getSeason()] + " > " + Categories["style"][product.getStyle()] + " > " + Categories["rubber"][product.getRubberType()]
 
-    # loop for collection all images of the product as a string
+    # loop for collecting all of the images of the current product's first seen color images as a string
     images = ""
     for image in product.images:
         if(image != product.images[-1]):
@@ -210,7 +195,7 @@ for product in products:
 
     #print("Color: ", product.getColor())
     #print("Sizes: ", product.getSizes())
-    if(isControlledDict[product.getFactory() + "-" + product.getDesignedYear() + product.getModelID()] == 0):
+    if(isControlledProductDict[product.getFactory() + "-" + product.getDesignedYear() + product.getModelID()] == 0):
 
         parent = product.getStockID()
         createAndFillRow(rowNumber, myfile, product, "variable", isFeatured, description,"", categories, images, "", crossSellProducts, "", "")
@@ -228,17 +213,27 @@ for product in products:
             else:
                 if (stock != 0):
                     size = "4" + str(index)
-                    createAndFillRow(rowNumber, myfile, product, "variation", isFeatured, description, str(stock), "", images, parent, crossSellProducts, product.getColor(), size)
+                    createAndFillRow(rowNumber, myfile, product, "variation", isFeatured, description, str(stock), "",
+                                     images, parent, crossSellProducts, product.getColor(), size)
                     rowNumber += 1
             index += 1
 
 
         for prod in products:
-            parent = prod.getStockID()
+            parent = product.getStockID()
 
             if( (product.getFactory() == prod.getFactory() )
                     and ( product.getModelID() == prod.getModelID() )
                     and ( product.getColor() != prod.getColor() ) ):
+
+                # loop for collecting all of the images of the current product's color images as a string
+                images = ""
+                for image in prod.images:
+                    if (image != prod.images[-1]):
+                        images += (image.getName() + ".jpg")
+
+                    if (image != prod.images[-1] and image != prod.images[-2]):
+                        images += ", "
 
                 # adding other colored product's color and size to the colors and sizes lists
                 colors.append(prod.getColor())
@@ -259,17 +254,18 @@ for product in products:
                     if (index == -1):
                         if(stock != 0):
                             size = "39"
-                            createAndFillRow(rowNumber, myfile, prod, "variation", isFeatured, description, str(stock),
-                                             "", images, parent, crossSellProducts, prod.getColor(), size)
+                            createAndFillRow(rowNumber, myfile, prod, "variation", isFeatured, description, str(stock),"",
+                                             images, parent, crossSellProducts, prod.getColor(), size)
                             rowNumber += 1
                     else:
                         if( stock != 0 ):
                             size = "4" + str(index)
-                            createAndFillRow(rowNumber, myfile, prod, "variation", isFeatured, description, str(stock), "", images, parent, crossSellProducts, prod.getColor(), size)
+                            createAndFillRow(rowNumber, myfile, prod, "variation", isFeatured, description, str(stock), "",
+                                             images, parent, crossSellProducts, prod.getColor(), size)
                             rowNumber += 1
                     index += 1
 
-                isControlledDict[product.getFactory() + "-" + product.getDesignedYear() + product.getModelID()] += 1
+                isControlledProductDict[product.getFactory() + "-" + product.getDesignedYear() + product.getModelID()] += 1
 
 
         colors = unique(colors)
@@ -295,7 +291,7 @@ for product in products:
         myfile.setAttribute1Values(tempRowNumberForColorsAndSizes, colorsString)
         myfile.setAttribute2Values(tempRowNumberForColorsAndSizes, sizesString)
 
-print(isControlledDict)
+print(isControlledProductDict)
 
 
 
