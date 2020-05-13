@@ -34,7 +34,7 @@ model1 = Model(modelID)
 # her modelin 6 resmi olacaq sekilde
 
 
-filenameTxtFile = "results1.txt"
+filenameTxtFile = "results.txt"
 
 writeToTxtFile = False # True: write to txt file, False: do not write to txt file
 if(writeToTxtFile): writeFilenamesToTxt(pathInPC, filenameTxtFile)
@@ -140,7 +140,8 @@ myfile.setWorksheetHeaders()
 # dictionary for controlling the number of the existince of the same product, first we set them all 0, we will change it later
 isControlledProductDict = {}
 for product in products:
-    isControlledProductDict[product.getFactory() + "-" + product.getDesignedYear() + product.getModelID()] = 0
+    isControlledProductDict[product.getFactory() + "-" + product.getDesignedYear() + product.getSeason() + product.getStyle() + product.getRubberType()
+                            + product.getModelID()] = 0
 
 
 rowNumber = 2
@@ -195,7 +196,8 @@ for product in products:
 
     #print("Color: ", product.getColor())
     #print("Sizes: ", product.getSizes())
-    if(isControlledProductDict[product.getFactory() + "-" + product.getDesignedYear() + product.getModelID()] == 0):
+    if(isControlledProductDict[product.getFactory() + "-" + product.getDesignedYear() + product.getSeason() + product.getStyle() + product.getRubberType()
+                            + product.getModelID()] == 0):
 
         parent = product.getStockID()
         createAndFillRow(rowNumber, myfile, product, "variable", isFeatured, description,"", categories, images, "", crossSellProducts, "", "")
@@ -223,6 +225,10 @@ for product in products:
             parent = product.getStockID()
 
             if( (product.getFactory() == prod.getFactory() )
+                    and ( product.getDesignedYear() == prod.getDesignedYear() )
+                    and ( product.getSeason() == prod.getSeason() )
+                    and ( product.getStyle() == prod.getStyle() )
+                    and ( product.getRubberType() == prod.getRubberType() )
                     and ( product.getModelID() == prod.getModelID() )
                     and ( product.getColor() != prod.getColor() ) ):
 
@@ -265,7 +271,8 @@ for product in products:
                             rowNumber += 1
                     index += 1
 
-                isControlledProductDict[product.getFactory() + "-" + product.getDesignedYear() + product.getModelID()] += 1
+                isControlledProductDict[product.getFactory() + "-" + product.getDesignedYear() + product.getSeason() + product.getStyle() + product.getRubberType()
+                            + product.getModelID()] += 1
 
 
         colors = unique(colors)

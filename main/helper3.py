@@ -1,10 +1,10 @@
 # this is an extra function to write filename
-# s into the "results.txt" file
+# s into the "resultsx.txt" file
 from helper1 import retrieveImageFilenameList
 
 def writeFilenamesToTxt(pathInPC, filenameTxtFile):
     imageFilenameList = retrieveImageFilenameList(pathInPC)
-    f = open(filenameTxtFile, "w")
+    f = open(filenameTxtFile, "w", encoding="utf-8")
     for ele in imageFilenameList:
         f.write(ele + '\n')
     f.close()
