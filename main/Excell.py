@@ -1,10 +1,12 @@
 from imp import reload
 from xlsxwriter import Workbook
+from datetime import datetime
 import sys
 reload(sys)
-#sys.setdefaultencoding('utf-8')
+sys.setdefaultencoding('utf-8')
 
-excellSheetName = "pittimen2020"
+
+excellSheetName = "excell-output-" + str(datetime.now().strftime("%d-%m-%Y-%H-%M-%S"))
 
 class Excell(Workbook):
     def __init__(self, name = str(excellSheetName) ):
@@ -74,6 +76,12 @@ class Excell(Workbook):
         self.worksheet.write('AS1', 'Attribute 2 global')
         self.worksheet.write('AT1', 'Attribute 1 default')
         self.worksheet.write('AU1', 'Attribute 2 default')
+
+        self.worksheet.write('AV1', 'Position')
+        self.worksheet.write('AW1', 'Woo Variation Gallery Images')
+        self.worksheet.write('AX1', 'Swatches Attributes')
+        self.worksheet.write('AY1', 'meta:wholesale_customer_have_wholesale_price')
+        self.worksheet.write('AZ1', 'meta:wholesale_customer_wholesale_price')
 
     def setType(self, rowNumber, value):
         self.worksheet.write('A' + str(rowNumber), value)
@@ -215,3 +223,19 @@ class Excell(Workbook):
 
     def setAttribute2Default(self, rowNumber, value):
         self.worksheet.write('AU' + str(rowNumber), value)
+
+    def setPosition(self, rowNumber, value):
+        self.worksheet.write('AV' + str(rowNumber), value)
+
+    def setWooVariationGalleryImages(self, rowNumber, value):
+        self.worksheet.write('AW' + str(rowNumber), value)
+
+    def setSwatchesAttributes(self, rowNumber, value):
+        self.worksheet.write('AX' + str(rowNumber), value)
+
+    def setWholesale_customer_have_wholesale_price(self, rowNumber, value):
+        self.worksheet.write('AY' + str(rowNumber), value)
+
+    def setWholesale_customer_wholesale_price(self, rowNumber, value):
+        self.worksheet.write('AZ' + str(rowNumber), value)
+

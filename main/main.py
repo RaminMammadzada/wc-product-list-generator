@@ -4,6 +4,7 @@ from Model import Model
 from Product import Product
 from constants import Categories, Tags
 from helper1 import *
+from datetime import datetime
 
 #pathInPC = "../../../modeller/erkek-2020-yazlik/" + "sultan/*"
 #pathInPC = "../../../../../Volumes/G-DRIVE mobile SSD R-Series/Shoes/modeller/erkek-2020-yazlik/depedro/*"
@@ -11,6 +12,8 @@ from helper2 import createObjectsAndFillThem, unique
 from helper3 import *
 
 #pathInPC = "/Volumes/G-DRIVE mobile SSD R-Series/Shoes/modeller/first-170-pairs-22-march-2020/dorduncu-merhele/*"
+
+
 pathInPC = "C://wc-programs/wc-product-list-generator/main/allimages/*"
 salePrice = ""
 
@@ -39,7 +42,7 @@ filenameTxtFile = "results.txt"
 writeToTxtFile = False # True: write to txt file, False: do not write to txt file
 if(writeToTxtFile): writeFilenamesToTxt(pathInPC, filenameTxtFile)
 
-getImageFilenamesFromPathOrTxtFile = False # True: from txt file, False: from path
+getImageFilenamesFromPathOrTxtFile = True # True: from txt file, False: from path
 
 if(getImageFilenamesFromPathOrTxtFile):
     imageFilenameList = getImageFilenameListFromTxt(filenameTxtFile)
@@ -116,6 +119,12 @@ def createAndFillRow(rowNumber, myFile, product, type, isFeatured, description, 
     myFile.setAttribute2Global(rowNumber, "1")
     myFile.setAttribute1Default(rowNumber, color)
     myFile.setAttribute2Default(rowNumber, size)
+    myFile.setPosition(rowNumber, "0")
+
+    myFile.setWooVariationGalleryImages(rowNumber, ", ".join(images.split(", ")[1:]))
+    myFile.setWholesale_customer_have_wholesale_price(rowNumber, "yes")
+    wholesalePrice = (int(product.getPrice())+6)/2 if type == "variation" else ""
+    myFile.setWholesale_customer_wholesale_price(rowNumber, wholesalePrice)
 
 
 # for product in products:
@@ -131,7 +140,7 @@ def createAndFillRow(rowNumber, myFile, product, type, isFeatured, description, 
 
 ### EXCEL FILE
 # Create Excell Workbook and ExcellSheet
-myfile = Excell("ProductsMarch2020")
+myfile = Excell()
 myfile.createWorkbook()
 myfile.createWorksheet()
 myfile.setWorksheetHeaders()
@@ -162,7 +171,7 @@ for product in products:
     images = ""
     for image in product.images:
         if(image != product.images[-1]):
-            images += ( image.getName() + ".jpg")
+            images += ("https://www.walkairshoes.com/az/wp-content/uploads/sites/5/" + str(datetime.now().strftime("%Y/%m/")) + image.getName() + ".jpg")
 
         if(image != product.images[-1] and image != product.images[-2] ):
             images += ", "
@@ -236,7 +245,7 @@ for product in products:
                 images = ""
                 for image in prod.images:
                     if (image != prod.images[-1]):
-                        images += (image.getName() + ".jpg")
+                        images += ("https://www.walkairshoes.com/az/wp-content/uploads/sites/5/" + str(datetime.now().strftime("%Y/%m/")) +image.getName() + ".jpg")
 
                     if (image != prod.images[-1] and image != prod.images[-2]):
                         images += ", "
@@ -297,6 +306,7 @@ for product in products:
 
         myfile.setAttribute1Values(tempRowNumberForColorsAndSizes, colorsString)
         myfile.setAttribute2Values(tempRowNumberForColorsAndSizes, sizesString)
+        myfile.setSwatchesAttributes(tempRowNumberForColorsAndSizes, createSwatchAttributesJson(sizes))
 
 print(isControlledProductDict)
 
