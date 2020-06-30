@@ -13,3 +13,20 @@ The detailed rules for naming product image filenames can be found the following
 https://www.youtube.com/watch?v=Qrm9yg_XHwA&list=PLhruyYlm-Zl4SB9q2ogM8_LESP5KsPTph&index=8
 
 
+## Author
+
+👤 **Ramin Mammadzada**
+
+- Github: [@raminmammadzada](https://github.com/raminmammadzada)
+- Twitter: [@raminmammadzada](https://twitter.com/raminmammadzada)
+- Linkedin: [raminmammadzada](https://linkedin.com/raminmammadzada) 
+- Email: [raminmammadzadaiu@gmail.com](mailto:raminmammadzadaiu@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## 📝 License
+
+This project is [MIT](LICENSE) licensed.
+
